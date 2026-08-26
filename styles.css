@@ -168,7 +168,19 @@ textarea:focus-visible {
 .profit-card {
   background: var(--primary);
   border-color: var(--primary);
-  color: #fff;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.profit-card::after {
+  content: "↗";
+  position: absolute;
+  right: 14px;
+  top: 10px;
+  font-size: 1.4rem;
+  color: var(--growth);
+  font-weight: 800;
 }
 
 .profit-card .stat-label,
@@ -617,4 +629,11 @@ textarea:focus-visible {
   .modal {
     border-radius: 22px;
   }
+}
+.brand-tagline {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.03em;
 }
