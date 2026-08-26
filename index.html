@@ -1,1 +1,368 @@
-.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#173f2a" />
+  <title>Up2Date</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">LAWN CARE BUSINESS</p>
+        <h1 id="brandName">Up2Date</h1>
+      </div>
+      <div class="brand-mark" aria-hidden="true">U2D</div>
+    </header>
+
+    <main class="content">
+      <!-- HOME -->
+      <section class="view active" id="homeView" data-view="home">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">OVERVIEW</p>
+            <h2>Home</h2>
+          </div>
+          <button class="button secondary" id="addExpenseBtn" type="button">+ Expense</button>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <span class="stat-label">Revenue</span>
+            <strong class="stat-value" id="revenueStat">$0.00</strong>
+            <span class="stat-note">Completed jobs</span>
+          </article>
+
+          <article class="stat-card">
+            <span class="stat-label">Expenses</span>
+            <strong class="stat-value" id="expensesStat">$0.00</strong>
+            <span class="stat-note">Recorded costs</span>
+          </article>
+
+          <article class="stat-card profit-card">
+            <span class="stat-label">Profit</span>
+            <strong class="stat-value" id="profitStat">$0.00</strong>
+            <span class="stat-note">Revenue minus expenses</span>
+          </article>
+
+          <article class="stat-card">
+            <span class="stat-label">Today</span>
+            <strong class="stat-value" id="todayJobsStat">0</strong>
+            <span class="stat-note">Jobs on schedule</span>
+          </article>
+        </div>
+
+        <div class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">SCHEDULE</p>
+              <h3>Today's Jobs</h3>
+            </div>
+            <button class="text-button" type="button" data-open-view="jobs">View all</button>
+          </div>
+          <div id="todayJobsList" class="stack-list"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">COSTS</p>
+              <h3>Recent Expenses</h3>
+            </div>
+          </div>
+          <div id="recentExpensesList" class="stack-list"></div>
+        </div>
+      </section>
+
+      <!-- CUSTOMERS -->
+      <section class="view" id="customersView" data-view="customers">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CONTACTS</p>
+            <h2>Customers</h2>
+          </div>
+          <button class="button primary" id="addCustomerBtn" type="button">+ Customer</button>
+        </div>
+
+        <label class="search-box">
+          <span class="sr-only">Search customers</span>
+          <input id="customerSearch" type="search" placeholder="Search name, phone, or address" autocomplete="off" />
+        </label>
+
+        <div id="customersList" class="card-list"></div>
+      </section>
+
+      <!-- JOBS -->
+      <section class="view" id="jobsView" data-view="jobs">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">WORK</p>
+            <h2>Jobs</h2>
+          </div>
+          <button class="button primary" id="addJobBtn" type="button">+ Job</button>
+        </div>
+
+        <div class="segmented-control" role="tablist" aria-label="Job filters">
+          <button class="segment active" type="button" data-job-filter="upcoming">Upcoming</button>
+          <button class="segment" type="button" data-job-filter="completed">Completed</button>
+          <button class="segment" type="button" data-job-filter="all">All</button>
+        </div>
+
+        <div id="jobsList" class="card-list"></div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="view" id="settingsView" data-view="settings">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">PREFERENCES</p>
+            <h2>Settings</h2>
+          </div>
+        </div>
+
+        <form class="panel settings-form" id="settingsForm">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">BUSINESS</p>
+              <h3>Business Information</h3>
+            </div>
+          </div>
+
+          <label class="field">
+            <span>Business name</span>
+            <input id="businessNameInput" type="text" maxlength="80" placeholder="Up2Date Lawn Care" />
+          </label>
+
+          <label class="field">
+            <span>Owner name</span>
+            <input id="ownerNameInput" type="text" maxlength="80" placeholder="Your name" />
+          </label>
+
+          <label class="field">
+            <span>Phone</span>
+            <input id="businessPhoneInput" type="tel" maxlength="30" placeholder="307-555-1234" />
+          </label>
+
+          <label class="field">
+            <span>Default service price</span>
+            <input id="defaultPriceInput" type="number" min="0" step="0.01" inputmode="decimal" placeholder="55.00" />
+          </label>
+
+          <button class="button primary full-width" type="submit">Save Settings</button>
+        </form>
+
+        <div class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">DATA</p>
+              <h3>Your Data</h3>
+            </div>
+          </div>
+
+          <div class="settings-actions">
+            <button class="button secondary full-width" id="exportDataBtn" type="button">Export Backup</button>
+            <button class="button danger full-width" id="deleteAllDataBtn" type="button">Delete All Data</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <p class="eyebrow">ABOUT</p>
+          <h3>Up2Date Version 1</h3>
+          <p class="muted">A simple, offline-first lawn-care business tracker. Your data stays in this browser on this device.</p>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button class="nav-item active" type="button" data-nav-view="home">
+        <span class="nav-icon" aria-hidden="true">⌂</span>
+        <span>Home</span>
+      </button>
+      <button class="nav-item" type="button" data-nav-view="customers">
+        <span class="nav-icon" aria-hidden="true">◎</span>
+        <span>Customers</span>
+      </button>
+      <button class="nav-item" type="button" data-nav-view="jobs">
+        <span class="nav-icon" aria-hidden="true">✓</span>
+        <span>Jobs</span>
+      </button>
+      <button class="nav-item" type="button" data-nav-view="settings">
+        <span class="nav-icon" aria-hidden="true">⚙</span>
+        <span>Settings</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- CUSTOMER MODAL -->
+  <div class="modal-backdrop" id="customerModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="customerModalTitle">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">CUSTOMER</p>
+          <h3 id="customerModalTitle">Add Customer</h3>
+        </div>
+        <button class="icon-button" type="button" data-close-modal="customerModal" aria-label="Close">×</button>
+      </div>
+
+      <form id="customerForm">
+        <input id="customerId" type="hidden" />
+
+        <label class="field">
+          <span>Name *</span>
+          <input id="customerName" type="text" maxlength="100" required placeholder="John Smith" />
+        </label>
+
+        <label class="field">
+          <span>Phone</span>
+          <input id="customerPhone" type="tel" maxlength="30" placeholder="307-555-1234" />
+        </label>
+
+        <label class="field">
+          <span>Email</span>
+          <input id="customerEmail" type="email" maxlength="120" placeholder="john@example.com" />
+        </label>
+
+        <label class="field">
+          <span>Address</span>
+          <input id="customerAddress" type="text" maxlength="160" placeholder="123 Main Street" />
+        </label>
+
+        <label class="field">
+          <span>Notes</span>
+          <textarea id="customerNotes" rows="4" maxlength="500" placeholder="Gate location, lawn details, special instructions..."></textarea>
+        </label>
+
+        <div class="modal-actions">
+          <button class="button secondary" type="button" data-close-modal="customerModal">Cancel</button>
+          <button class="button primary" type="submit">Save Customer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JOB MODAL -->
+  <div class="modal-backdrop" id="jobModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="jobModalTitle">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">JOB</p>
+          <h3 id="jobModalTitle">Add Job</h3>
+        </div>
+        <button class="icon-button" type="button" data-close-modal="jobModal" aria-label="Close">×</button>
+      </div>
+
+      <form id="jobForm">
+        <input id="jobId" type="hidden" />
+
+        <label class="field">
+          <span>Customer *</span>
+          <select id="jobCustomer" required></select>
+        </label>
+
+        <label class="field">
+          <span>Service *</span>
+          <select id="jobService" required>
+            <option value="Mowing">Mowing</option>
+            <option value="Weed Whacking">Weed Whacking</option>
+            <option value="Mowing + Weed Whacking">Mowing + Weed Whacking</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+
+        <div class="form-grid">
+          <label class="field">
+            <span>Date *</span>
+            <input id="jobDate" type="date" required />
+          </label>
+
+          <label class="field">
+            <span>Time</span>
+            <input id="jobTime" type="time" />
+          </label>
+        </div>
+
+        <div class="form-grid">
+          <label class="field">
+            <span>Price *</span>
+            <input id="jobPrice" type="number" min="0" step="0.01" inputmode="decimal" required placeholder="55.00" />
+          </label>
+
+          <label class="field">
+            <span>Status</span>
+            <select id="jobStatus">
+              <option value="Scheduled">Scheduled</option>
+              <option value="Completed">Completed</option>
+              <option value="Canceled">Canceled</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Notes</span>
+          <textarea id="jobNotes" rows="4" maxlength="500" placeholder="Gate code, special requests, equipment notes..."></textarea>
+        </label>
+
+        <div class="modal-actions">
+          <button class="button secondary" type="button" data-close-modal="jobModal">Cancel</button>
+          <button class="button primary" type="submit">Save Job</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- EXPENSE MODAL -->
+  <div class="modal-backdrop" id="expenseModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="expenseModalTitle">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">EXPENSE</p>
+          <h3 id="expenseModalTitle">Add Expense</h3>
+        </div>
+        <button class="icon-button" type="button" data-close-modal="expenseModal" aria-label="Close">×</button>
+      </div>
+
+      <form id="expenseForm">
+        <label class="field">
+          <span>Description *</span>
+          <input id="expenseDescription" type="text" maxlength="120" required placeholder="Gas" />
+        </label>
+
+        <label class="field">
+          <span>Category *</span>
+          <select id="expenseCategory" required>
+            <option value="Fuel">Fuel</option>
+            <option value="Equipment">Equipment</option>
+            <option value="Repairs">Repairs</option>
+            <option value="Supplies">Supplies</option>
+            <option value="Advertising">Advertising</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+
+        <div class="form-grid">
+          <label class="field">
+            <span>Amount *</span>
+            <input id="expenseAmount" type="number" min="0" step="0.01" inputmode="decimal" required placeholder="25.00" />
+          </label>
+
+          <label class="field">
+            <span>Date *</span>
+            <input id="expenseDate" type="date" required />
+          </label>
+        </div>
+
+        <div class="modal-actions">
+          <button class="button secondary" type="button" data-close-modal="expenseModal">Cancel</button>
+          <button class="button primary" type="submit">Save Expense</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
