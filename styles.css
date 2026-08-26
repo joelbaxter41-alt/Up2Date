@@ -1,21 +1,30 @@
 :root {
-  --bg: #f4f7f4;
+  --bg: #f2f4f3;
   --surface: #ffffff;
-  --surface-soft: #f7faf7;
-  --text: #17201b;
-  --muted: #6c776f;
-  --border: #dde5de;
-  --primary: #1e5a3d;
-  --primary-dark: #16452e;
-  --primary-soft: #e6f0ea;
+  --surface-soft: #fafbf8;
+
+  --text: #1f2326;
+  --muted: #6f7873;
+
+  --border: #dde3df;
+
+  --primary: #0f3d2e;
+  --primary-dark: #092d21;
+  --primary-soft: #e6efe9;
+
+  --growth: #3bb15e;
+  --growth-soft: #e8f6ec;
+
   --danger: #ad3535;
   --danger-soft: #fff2f2;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+
+  --shadow: 0 10px 30px rgba(15, 61, 46, 0.07);
+
   --radius: 18px;
   --radius-sm: 12px;
 }
 
-* {
+{
   box-sizing: border-box;
 }
 
@@ -75,17 +84,13 @@ textarea:focus-visible {
   letter-spacing: -0.04em;
 }
 
-.brand-mark {
+.brand-logo {
   width: 48px;
   height: 48px;
+  object-fit: cover;
   border-radius: 14px;
-  background: var(--primary);
-  color: #fff;
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  font-size: 0.95rem;
-  box-shadow: var(--shadow);
+  display: block;
+  box-shadow: 0 8px 20px rgba(15, 61, 46, 0.14);
 }
 
 .eyebrow {
